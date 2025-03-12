@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferrari - Багаторівневе меню</title>
+    <link rel="stylesheet" href="css/css.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#">Ferrari</a>
+            </div>
+            <label for="menu-toggle-checkbox" class="menu-toggle">
+                <span class="menu-toggle-icon"><span></span></span>
+            </label>
+            <ul class="nav-menu">
+                <li><a href="#">Головна</a></li>
+                <li>
+                    <a href="#" class="arrow-down">Переваги</a>
+                    <ul class="submenu">
+                        <li><a href="#">Модель 1</a></li>
+                        <li>
+                            <a href="#" class="arrow-right">Модель 2</a>
+                            <ul class="submenu submenu-level-2">
+                                <li><a href="#">Модель 2.1</a></li>
+                                <li>
+                                    <a href="#" class="arrow-right">Модель 2.2</a>
+                                    <ul class="submenu submenu-level-3">
+                                        <li><a href="#">Модель 2.2.1</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">Модель 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Моделі</a></li>
+                <li><a href="#">Інформація</a></li>
+                <li><a href="#">Тест-драйв</a></li>
+            </ul>
+            <label for="menu-toggle-checkbox" class="close-menu"></label>
+            <label for="menu-toggle-checkbox" class="overlay"></label>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Ласкаво просимо у світ Ferrari</h1>
+            <p>Швидкість. Стиль. Потужність.</p>
+            <div class="hero-buttons">
+                <a href="#models" class="btn">Переглянути моделі</a>
+                <a href="#test-drive" class="btn">Тест-драйв</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
