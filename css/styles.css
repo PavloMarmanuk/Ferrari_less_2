@@ -1,0 +1,308 @@
+ :root {
+    --primary-color: #FF0000;
+    --primary-dark: #8B0000;
+    --accent-color: #FFC107;
+    --text-color: #FFFFFF;
+    --dark-bg: #000000;
+    --dark-bg-transparent: rgba(0, 0, 0, 0.9);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --hover-bg: rgba(255, 255, 255, 0.2);
+    --transition-speed: 0.3s;
+    --submenu-level1-bg: rgba(255, 0, 0, 0.1);
+    --submenu-level2-bg: rgba(255, 0, 0, 0.2);
+    --submenu-level3-bg: rgba(255, 0, 0, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding-top: 80px; /* Для фіксованого хедера */
+}
+
+/* Стилі для шапки */
+header {
+    background: linear-gradient(90deg, var(--primary-color), var(--primary-dark));
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.7);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: var(--transition-speed);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Стилі для логотипу */
+.logo a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: var(--transition-speed);
+    display: block;
+    padding: 15px 0;
+}
+
+.logo a:hover {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(255, 193, 7, 0.8);
+}
+
+/* Стилі для навігації */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    position: relative;
+}
+
+.nav-menu li {
+    position: relative;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 1.125rem;
+    transition: var(--transition-speed);
+    padding: 25px 15px;
+    display: block;
+    white-space: nowrap;
+}
+
+.nav-menu a:hover {
+    background: var(--hover-bg);
+    color: var(--accent-color);
+}
+
+/* Стилі для стрілок з використанням псевдоелементів */
+.arrow-down::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 8px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--text-color);
+    transition: var(--transition-speed);
+    vertical-align: middle;
+}
+
+.arrow-right::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 8px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid var(--text-color);
+    transition: var(--transition-speed);
+    vertical-align: middle;
+}
+
+/* Стилі для підменю */
+.submenu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--dark-bg-transparent);
+    min-width: 200px;
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.5);
+    border-radius: 5px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity var(--transition-speed) ease,
+                visibility var(--transition-speed) ease,
+                transform var(--transition-speed) ease;
+    z-index: 100;
+}
+
+.submenu li {
+    width: 100%;
+}
+
+.submenu a {
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Підменю другого рівня */
+.submenu-level-2 {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px);
+    transition: opacity var(--transition-speed) ease,
+                visibility var(--transition-speed) ease,
+                transform var(--transition-speed) ease;
+    pointer-events: none;
+}
+
+/* Підменю третього рівня */
+.submenu-level-3 {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px);
+    transition: opacity var(--transition-speed) ease,
+                visibility var(--transition-speed) ease,
+                transform var(--transition-speed) ease;
+    pointer-events: none;
+}
+
+.submenu, .submenu-level-2, .submenu-level-3 {
+    list-style: none;
+}
+
+/* Показ підменю при наведенні з використанням комбінаторів */
+.nav-menu li:hover > .submenu,
+.submenu li:hover > .submenu-level-2,
+.submenu-level-2 li:hover > .submenu-level-3 {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) translateX(0);
+    pointer-events: auto;
+}
+
+/* Поворот стрілки при наведенні з використанням трансформацій */
+.nav-menu li:hover > a .arrow-down::after,
+.nav-menu li:hover > a.arrow-down::after {
+    transform: rotate(180deg);
+    border-top-color: var(--accent-color);
+}
+
+.submenu li:hover > a .arrow-right::after,
+.submenu li:hover > a.arrow-right::after {
+    transform: rotate(90deg);
+    border-left-color: var(--accent-color);
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 50rem;
+    padding: 0 1.25rem;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+    animation: fadeInDown 1s ease-out;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    margin-bottom: 1.875rem;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+    animation: fadeInUp 1s ease-out 0.5s;
+    animation-fill-mode: both;
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-buttons {
+    margin-top: 1.25rem;
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    animation: fadeIn 1s ease-out 1s;
+    animation-fill-mode: both;
+}
+
+.btn {
+    padding: 0.9375rem 1.875rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border: 2px solid white;
+    background: transparent;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 5px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn:hover, .btn:active {
+    background: #FF0000;
+    border-color: #FF0000;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+
